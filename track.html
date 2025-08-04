@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="mn">
+<head>
+  <meta charset="UTF-8">
+  <title>Илгээмж шалгах</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>Илгээмж шалгах</h1>
+  <form id="trackForm">
+    <input type="text" id="trackInput" placeholder="Трэйкинг дугаар" required><br>
+    <button type="submit">Шалгах</button>
+  </form>
+  <div id="trackResult"></div>
+  <script>
+    document.getElementById('trackForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const code = document.getElementById('trackInput').value;
+      const data = JSON.parse(localStorage.getItem(code));
+      const result = document.getElementById('trackResult');
+      result.innerHTML = data
+        ? `<p>📦 ${data.description} (${data.receiver}, ${data.phone})</p><p>Төлөв: Замд</p>`
+        : "<p style='color:red;'>Илгээмж олдсонгүй</p>";
+    });
+  </script>
+</body>
+</html>
